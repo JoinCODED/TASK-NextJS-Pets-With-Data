@@ -1,6 +1,8 @@
 import { fetchPetById } from "@/app/actions";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
+import ActionButtons from "./components/ActionButtons";
+
 async function PetDetailPage({ params }) {
   const pet = await fetchPetById(params.id)
 
@@ -21,14 +23,7 @@ async function PetDetailPage({ params }) {
           <h1>Name: {name}</h1>
           <h1>Type: {type}</h1>
           <h1>adopted: {adopted ? "yes" : "no"}</h1>
-
-          {!adopted && <button className="w-[70px] border border-black rounded-md  hover:bg-green-400 my-5">
-            Adobt
-          </button>}
-
-          <button className="w-[70px] border border-black rounded-md  hover:bg-red-400">
-            Delete
-          </button>
+          <ActionButtons pet={pet} />
         </div>
       </div>
     </div>
